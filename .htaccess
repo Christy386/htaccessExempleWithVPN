@@ -1,0 +1,14 @@
+RewriteEngine on
+
+#remote IP from server
+RewriteCond %{REMOTE_ADDR} !^45\.152\.46\.105 
+
+#VPN User IP
+RewriteCond %{REMOTE_ADDR} !^146\.70\.202\.118
+
+#You can add more IPs from another VPN users like this:
+#RewriteCond %{REMOTE_ADDR} !^your\.vpn\.ip\.here
+
+RewriteCond %{REQUEST_URI} !/maintenance.php$ [NC]
+RewriteCond %{REQUEST_URI} !\.(jpe?g?|png|gif) [NC]
+RewriteRule .* /maintenance.php [R=302,L]
